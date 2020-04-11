@@ -28,31 +28,34 @@ div.desc {
 
 <div class="gallery">
   <a target="_blank" href="img_5terre.jpg">
-    <img src="1.jpg" alt="Cinque Terre" width="600" height="400">
+    <img src="11.jpg" alt="Cinque Terre" width="600" height="400">
   </a>
   <div class="desc">NIALM</div>
 </div>
 
 <div class="gallery">
   <a target="_blank" href="img_forest.jpg">
-    <img src="2.jpg" alt="Forest" width="600" height="400">
+    <img src="21.jpg" alt="Forest" width="600" height="400">
   </a>
   <div class="desc">NIALM</div>
 </div>
 
 <div class="gallery">
   <a target="_blank" href="img_lights.jpg">
-    <img src="3.jpg" alt="Northern Lights" width="600" height="400">
+    <img src="31.jpg" alt="Northern Lights" width="600" height="400">
   </a>
   <div class="desc">NIALM</div>
 </div>
 
 <div class="gallery">
   <a target="_blank" href="img_mountains.jpg">
-    <img src="4.jpg" alt="Mountains" width="600" height="400">
+    <img src="14.jpg" alt="Mountains" width="600" height="400">
   </a>
   <div class="desc">NIALM</div>
 </div>
-
+<form action="upload-manager.php" method="POST" enctype="multipart/form-data">
+         <input type="file" name="image" />
+         <input type="submit"/>
+</form>
 </body>
 </html>
