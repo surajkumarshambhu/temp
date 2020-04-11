@@ -25,34 +25,48 @@ div.desc {
 </style>
 </head>
 <body>
+<?php 
 
+$mysqli = new mysqli("localhost","root","","test1");
+
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+
+// Return name of current default database
+if ($result = $mysqli -> query("SELECT DATABASE()")) {
+  $row = $result -> fetch_row();
+  // echo "Default d÷atabase is " . $row[0];
+  $result -> close();
+}
+
+// Change db to "test" db
+$mysqli -> select_db("test1");
+
+// Return name of current default database
+if ($result = $mysqli -> query("SELECT DATABASE()")) {
+  $row = $result -> fetch_row();
+  // echo "Default ÷database is " . $row[0];
+  $result -> close();
+}
+$result = mysqli_query($mysqli, 'SELECT * FROM test');
+if(empty($result)){
+  echo "empty";die;
+}
+if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+echo $row["imagepath"]
+?>
 <div class="gallery">
   <a target="_blank" href="img_5terre.jpg">
-    <img src="11.jpg" alt="Cinque Terre" width="600" height="400">
+    <img src=<<?php echo $row["imagepath"] ?>  width="600" height="400">
   </a>
-  <div class="desc">NIALM</div>
 </div>
-
-<div class="gallery">
-  <a target="_blank" href="img_forest.jpg">
-    <img src="21.jpg" alt="Forest" width="600" height="400">
-  </a>
-  <div class="desc">NIALM</div>
-</div>
-
-<div class="gallery">
-  <a target="_blank" href="img_lights.jpg">
-    <img src="31.jpg" alt="Northern Lights" width="600" height="400">
-  </a>
-  <div class="desc">NIALM</div>
-</div>
-
-<div class="gallery">
-  <a target="_blank" href="img_mountains.jpg">
-    <img src="14.jpg" alt="Mountains" width="600" height="400">
-  </a>
-  <div class="desc">NIALM</div>
-</div>
+<?php 
+            }
+         } 
+?>
 <form action="upload-manager.php" method="POST" enctype="multipart/form-data">
          <input type="file" name="image" />
          <input type="submit"/>

@@ -43,7 +43,7 @@ if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli -> error;
     }
-    // header('Location: nilam.php');
+    header('Location: nilam.php');
 } else {
     echo "Possible file upload attack!\n";
 }
