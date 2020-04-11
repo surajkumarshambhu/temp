@@ -18,7 +18,7 @@ if ($result = $mysqli -> query("SELECT DATABASE()")) {
 }
 
 // Change db to "test" db
-$mysqli -> select_db("test");
+$mysqli -> select_db("test1");
 
 // Return name of current default database
 if ($result = $mysqli -> query("SELECT DATABASE()")) {
@@ -34,7 +34,16 @@ echo $uploadfile;
 echo '<pre>';
 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
     echo "File is valid, and was successfully uploaded.\n";
-    header('Location: nilam.php');
+    $sql = "INSERT INTO test (imagepath)
+    VALUES ('$uploadfile')";
+
+    if ($mysqli -> query("INSERT INTO test (imagepath)
+    VALUES ('$uploadfile')") === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $mysqli -> error;
+    }
+    // header('Location: nilam.php');
 } else {
     echo "Possible file upload attack!\n";
 }
